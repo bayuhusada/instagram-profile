@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:instagram_ui/widgets/profile_info.dart';
 import 'package:instagram_ui/widgets/profile_picture.dart';
 import 'package:instagram_ui/widgets/story_highlights.dart';
+import 'package:instagram_ui/widgets/tab_icon.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -159,14 +160,71 @@ class ProfilePage extends StatelessWidget {
                   StoryHighlight('Highlight 2'),
                   StoryHighlight('Highlight 3'),
                   StoryHighlight('Highlight 4'),
-
+                  StoryHighlight('Highlight 4'),
+                  StoryHighlight('Highlight 4'),
+                  StoryHighlight('Highlight 4'),
+                  StoryHighlight('Highlight 4'),
+                  StoryHighlight('Highlight 4'),
+                  StoryHighlight('Highlight 4'),
+                  StoryHighlight('Highlight 4'),
                 ],
               ),
             ),
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TabIcon(Icons.grid_on, true),
+              TabIcon(Icons.video_collection_outlined, false),
+              TabIcon(Icons.person_pin_outlined, false),
+            ],
+          ),
+          SizedBox(height: 8),
+          GridView.builder(
+            itemCount: 15,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) => Image.network(
+              'https://picsum.photos/id/${index + 500}/200/300',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: 4,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box_outlined),
+            label: 'add',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.video_collection_outlined),
+            label: 'rells',
+          ),
+          BottomNavigationBarItem(
+            icon: CircleAvatar(
+              radius: 12,
+              backgroundImage: NetworkImage(
+                'https://picsum.photos/200/300',
+              ),
+            ),
+            label: 'Profile',
           ),
         ],
       ),
     );
   }
 }
-
